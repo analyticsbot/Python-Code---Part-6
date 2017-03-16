@@ -1,0 +1,71 @@
+This is tested on an Amazon EC2 Ubuntu Server 14.04 LTS (HVM),
+SSD Volume Type machine
+
+1. Python comes pre-installed on an ubuntu machine. No need to install
+2. create a folder namejet inside which all the codes will be stored
+
+sudo mkdir namejet
+cd namejet/
+
+3. download get-pip.py
+
+sudo wget https://bootstrap.pypa.io/get-pip.py
+
+4. sudo python get-pip.py
+
+this install the pip for python
+
+5. give permissions to this folder to copy codes
+sudo chmod 777 .
+
+6. install required modules for the script
+sudo pip install -r requirements.txt
+
+7. install firefox
+sudo apt-get update
+sudo apt-get install firefox=28.0+build2-0ubuntu2
+
+8. install virtual framebuffer for ubuntu
+sudo apt-get install xvfb
+
+9. start the display
+sudo Xvfb :99 -ac
+
+DON'T close this command prompt. Now the virtual display is open
+
+10. open another command prompt
+type screen and press space twice
+
+11. export DISPLAY=:99
+
+12. copy paste the two codes to the namejet dir on the machine
+
+13. Run the first code db_update.py
+This code adds domains to the a sqlite3 db
+This script could be run as many time as possible.
+You can add more than 1 domains 
+
+syntax - python db_update.py -dp "johannesburgsummit.org,69"
+
+this should print a message on screen
+
+ubuntu@ip-172-31-24-251:~/namejet$ python db_update.py -dp "johannesburgsummit.org,69"
+Table namejet does not exists. Created
+Successfully log in!!
+Visiting url :: http://www.namejet.com/Pages/Auctions/BackorderDetails.aspx?domainname=johannesburgsummit.org for getting time
+url :: http://www.namejet.com/Pages/Auctions/BackorderDetails.aspx?domainname=johannesburgsummit.org has waiting time :: 0 seconds
+Domain :: johannesburgsummit.org entry does not exist. Adding one
+bidding for domain name ::  johannesburgsummit.org
+All voting done
+ubuntu@ip-172-31-24-251:~/namejet$
+
+14. Open a terminal. Use the screen option and run the following 
+
+python namejet_bid.py
+
+This will run only when the required domain is to be bid upon. Other times it will simply keep sleeping.
+If you used the screen option, this will keep running. You can resume this screen by typing
+
+screen -r
+
+If you wish to close this, just open and do a ctrl+c
