@@ -1,0 +1,7 @@
+mechanize
+requests
+beautifulsoup4
+text_unidecode
+pyPdf
+boto
+filechunkio
